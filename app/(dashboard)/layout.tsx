@@ -1,7 +1,4 @@
-import React from 'react';
-import Link from 'next/link';
 import {
-  Bell,
   CircleUser,
   Home,
   LineChart,
@@ -12,7 +9,10 @@ import {
   ShoppingCart,
   Users,
 } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
 
+import Logo from '@/components/logo';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -33,9 +33,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { menuNavbar } from '../constant';
-import { Icons } from '@/components/ui/icons';
-import Logo from '@/components/logo';
-import { ModeToggle } from '@/components/toggle-theme';
+import MenuLink from './dashboard/components/menu-link';
 
 export const description =
   'A products dashboard with a sidebar navigation and a main content area. The dashboard has a header with a search input and a user menu. The sidebar has a logo, navigation links, and a card with a call to action. The main content area shows an empty state with a call to action.';
@@ -60,14 +58,12 @@ export default function DashboardLayout({
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               {menuNavbar.map((menu, index) => (
-                <Link
+                <MenuLink
                   key={index}
                   href={menu.href}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <menu.icons className="h-4 w-4" />
-                  {menu.title}
-                </Link>
+                  icons={menu.icons}
+                  title={menu.title}
+                />
               ))}
             </nav>
           </div>
